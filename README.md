@@ -38,6 +38,8 @@ atlas-replay-node --mode=rpc \
 ```
 
 #### Low CPU mode
+This will use up to 4 CPU cores
+
 ```bash
 atlas-replay-node --mode=rpc \
     --log-level=info \
@@ -45,7 +47,7 @@ atlas-replay-node --mode=rpc \
     --server-url='https://testnet.atlas.xyz:3002/' \
     --postgres-url='postgresql://public_access:cfbea91fe55e79be93c69c7552d8c8114e12@postgres-testnet.atlas.xyz:5432/svm_node' \
     --api-key=<YOUR API KEY> \
-    --num-async-threads=2 \
+    --num-async-threads=1 \
     --low-cpu
 ```
 
@@ -64,9 +66,11 @@ docker run -d \
         --server-url='https://testnet.atlas.xyz:3002/' \
         --postgres-url='postgresql://public_access:cfbea91fe55e79be93c69c7552d8c8114e12@postgres-testnet.atlas.xyz:5432/svm_node' \
         --api-key=<YOUR API KEY> \
-        --num-async-threads=2
+        --num-async-threads=1
 ```
 #### Low CPU mode
+This will use up to 4 CPU cores
+
 ```bash
 docker run -d \
         --name atlas-rpc \
@@ -78,7 +82,7 @@ docker run -d \
         --server-url='https://testnet.atlas.xyz:3002/' \
         --postgres-url='postgresql://public_access:cfbea91fe55e79be93c69c7552d8c8114e12@postgres-testnet.atlas.xyz:5432/svm_node' \
         --api-key=<YOUR API KEY> \
-        --num-async-threads=2 \
+        --num-async-threads=1 \
         --low-cpu
 ```
 
