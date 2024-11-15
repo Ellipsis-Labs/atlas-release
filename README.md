@@ -89,11 +89,11 @@ spec:
         - --num-async-threads=2
         resources:
           requests:
-            cpu: 24
-            memory: 32Gi
+            cpu: 32
+            memory: 64Gi
           limits:
-            cpu: 24
-            memory: 32Gi
+            cpu: 32
+            memory: 64Gi
         livenessProbe:
           httpGet:
             path: /liveness
