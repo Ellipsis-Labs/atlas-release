@@ -15,6 +15,8 @@ Once the sequencer processed those transactions, they would be sent back to the 
 At least 32 cores, 64G memory, and 100G disk
 `linux/amd64` or `linux/arm64`
 
+We support machines with lower specs, but we recommend that you run the below commands with the `--low-cpu` flag.
+
 ### Upstream connections / External Dependencies:
 
 Redis(Message Bus): `redis://redis-testnet.atlas.xyz:6379/`
@@ -35,6 +37,18 @@ atlas-replay-node --mode=rpc \
     --num-async-threads=2
 ```
 
+#### Low CPU mode
+```bash
+atlas-replay-node --mode=rpc \
+    --log-level=info \
+    --redis-url='redis://redis-testnet.atlas.xyz:6379/' \
+    --server-url='https://testnet.atlas.xyz:3002/' \
+    --postgres-url='postgresql://public_access:cfbea91fe55e79be93c69c7552d8c8114e12@postgres-testnet.atlas.xyz:5432/svm_node' \
+    --api-key=<YOUR API KEY> \
+    --num-async-threads=2 \
+    --low-cpu
+```
+
 To save logs elsewhere, pass the argument `--log-dir`. The log files on disk will be rotated daily.
 
 ### Start from docker
@@ -51,6 +65,21 @@ docker run -d \
         --postgres-url='postgresql://public_access:cfbea91fe55e79be93c69c7552d8c8114e12@postgres-testnet.atlas.xyz:5432/svm_node' \
         --api-key=<YOUR API KEY> \
         --num-async-threads=2
+```
+#### Low CPU mode
+```bash
+docker run -d \
+        --name atlas-rpc \
+        -p 8899:8899 -p 8900:8900 \
+        ghcr.io/ellipsis-labs/atlas-replay-node:v0.0.1 \
+        --mode=rpc \
+        --log-level=info \
+        --redis-url='redis://redis-testnet.atlas.xyz:6379/' \
+        --server-url='https://testnet.atlas.xyz:3002/' \
+        --postgres-url='postgresql://public_access:cfbea91fe55e79be93c69c7552d8c8114e12@postgres-testnet.atlas.xyz:5432/svm_node' \
+        --api-key=<YOUR API KEY> \
+        --num-async-threads=2 \
+        --low-cpu
 ```
 
 ### Kubernetes template
