@@ -33,8 +33,7 @@ atlas-replay-node --mode=rpc \
     --redis-url='redis://redis-testnet.atlas.xyz:6379/' \
     --server-url='https://testnet.atlas.xyz:3002/' \
     --postgres-url='postgresql://public_access:cfbea91fe55e79be93c69c7552d8c8114e12@postgres-testnet.atlas.xyz:5432/svm_node' \
-    --api-key=<YOUR API KEY> \
-    --num-async-threads=2
+    --api-key=<YOUR API KEY>
 ```
 
 #### Low CPU mode
@@ -43,12 +42,11 @@ This will use up to 4 CPU cores
 ```bash
 atlas-replay-node --mode=rpc \
     --log-level=info \
+    --low-cpu \
     --redis-url='redis://redis-testnet.atlas.xyz:6379/' \
     --server-url='https://testnet.atlas.xyz:3002/' \
     --postgres-url='postgresql://public_access:cfbea91fe55e79be93c69c7552d8c8114e12@postgres-testnet.atlas.xyz:5432/svm_node' \
-    --api-key=<YOUR API KEY> \
-    --num-async-threads=1 \
-    --low-cpu
+    --api-key=<YOUR API KEY>
 ```
 
 To save logs elsewhere, pass the argument `--log-dir`. The log files on disk will be rotated daily.
@@ -59,14 +57,13 @@ To save logs elsewhere, pass the argument `--log-dir`. The log files on disk wil
 docker run -d \
         --name atlas-rpc \
         -p 8899:8899 -p 8900:8900 \
-        ghcr.io/ellipsis-labs/atlas-replay-node:v0.0.1 \
-        --mode=rpc \
+        ghcr.io/ellipsis-labs/atlas-replay-node:latest \
         --log-level=info \
+        --mode=rpc \
         --redis-url='redis://redis-testnet.atlas.xyz:6379/' \
         --server-url='https://testnet.atlas.xyz:3002/' \
         --postgres-url='postgresql://public_access:cfbea91fe55e79be93c69c7552d8c8114e12@postgres-testnet.atlas.xyz:5432/svm_node' \
-        --api-key=<YOUR API KEY> \
-        --num-async-threads=1
+        --api-key=<YOUR API KEY>
 ```
 #### Low CPU mode
 This will use up to 4 CPU cores
@@ -75,15 +72,14 @@ This will use up to 4 CPU cores
 docker run -d \
         --name atlas-rpc \
         -p 8899:8899 -p 8900:8900 \
-        ghcr.io/ellipsis-labs/atlas-replay-node:v0.0.1 \
-        --mode=rpc \
+        ghcr.io/ellipsis-labs/atlas-replay-node:latest \
         --log-level=info \
+        --mode=rpc \
+        --low-cpu \
         --redis-url='redis://redis-testnet.atlas.xyz:6379/' \
         --server-url='https://testnet.atlas.xyz:3002/' \
         --postgres-url='postgresql://public_access:cfbea91fe55e79be93c69c7552d8c8114e12@postgres-testnet.atlas.xyz:5432/svm_node' \
-        --api-key=<YOUR API KEY> \
-        --num-async-threads=1 \
-        --low-cpu
+        --api-key=<YOUR API KEY>
 ```
 
 ### Kubernetes template
@@ -107,7 +103,7 @@ spec:
     spec:
       containers:
       - name: atlas-rpc
-        image: ghcr.io/ellipsis-labs/atlas-replay-node:v0.0.1
+        image: ghcr.io/ellipsis-labs/atlas-replay-node:latest
         ports:
         - containerPort: 8899
         - containerPort: 8900
@@ -144,9 +140,9 @@ spec:
 ### Misc
 
 - Historical state storage
-    
-    Right now, the historical state is saved in our Postgres database. 
-    
+
+    Right now, the historical state is saved in our Postgres database.
+
     In the future, once we make our transaction ledger public, anyone can replay the ledger, rebuild the historical state, and store it in a private database.
-    
-- Re: external dependencies, some may change - We’re planning to migrate our Redis to Kafka soon, and the historical storage layer hasn’t been finalized yet.
+
+- Re: external dependencies, some may change - The historical storage layer hasn’t been finalized yet.
