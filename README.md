@@ -23,7 +23,7 @@ Redis(Message Bus): `redis://redis-testnet.atlas.xyz:6379/`
 
 Postgres(Serve historical data): `postgresql://public_access:cfbea91fe55e79be93c69c7552d8c8114e1@postgres-testnet.atlas.xyz:5432/svm_node`
 
-Sequencer: `http://testnet.atlas.xyz:3002`  (API Key required)
+Sequencer: `https://testnet.atlas.xyz:3002`  (API Key required)
 
 ### Start the server from binary:
 
