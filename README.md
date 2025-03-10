@@ -8,7 +8,7 @@ It provides a Solana-compatible JSON-RPC and websocket endpoint.
 
 All transactions sent to the RPC node will be forwarded to our sequencer.
 
-Once the sequencer processed those transactions, they would be sent back to the RPC node by a message bus (Redis for now), the RPC node would replay the transaction to make sure that the sequencer is not malicious.
+Once the sequencer processes those transactions, they will be sent back to the RPC node by a message bus (Redis for now), the RPC node would replay the transaction to make sure that the sequencer is not malicious.
 
 ### Machine spec:
 
